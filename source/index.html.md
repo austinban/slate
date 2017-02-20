@@ -10,7 +10,7 @@ language_tabs:
 toc_footers:
   - <a href='https://www.crystalknows.com/'>Crystal Home Site</a>
   - <a href='mailto:hello@crystalknows.com'>Email Us</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Bug Reporting</a>  <!-- Link to public github repo -->
 
 includes:
   - errors
@@ -61,6 +61,11 @@ Kittn uses API keys to allow access to the API. You can register a new Kittn API
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
+
+Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------- | --------------
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
