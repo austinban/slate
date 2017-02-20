@@ -20,9 +20,9 @@ search: true
 
 # Introduction
 
-Welcome to the Crystal API! You can use our API to access Crystal API endpoints.
+> We have language bindings in Shell, Ruby, and Python! You can view code examples in this dark area, and you can switch the programming language of the examples with the tabs in the top.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Welcome to the Crystal API! You can use our API to access Crystal API endpoints.
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
@@ -60,15 +60,37 @@ Kittn uses API keys to allow access to the API. You can register a new Kittn API
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Code block: meowmeowmeow`
 
 Table Header 1 | Table Header 2 | Table Header 3
 -------------- | -------------- | --------------
 Row 1 col 1 | Row 1 col 2 | Row 1 col 3
 Row 2 col 1 | Row 2 col 2 | Row 2 col 3
 
+1. This
+2. Is
+3. An
+4. Ordered
+5. List
+
+* This
+* Is
+* A
+* Bullet
+* List
+
+This is an [internal link](#error-code-definitions), this is an [external link](http://google.com).
+
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+This is a notice
+</aside>
+
+<aside class="warning">
+This is a warning
+</aside>
+
+<aside class="success">
+This is a success
 </aside>
 
 # Kittens

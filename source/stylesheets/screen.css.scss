@@ -410,6 +410,10 @@ html, body {
     border-bottom: 2px solid $main-bg;
   }
 
+  a{
+    color: $link-text;
+  }
+
   table {
     margin-bottom: 1em;
     overflow: auto;
