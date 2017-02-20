@@ -26,6 +26,10 @@ Welcome to the Crystal API! You can use our API to access Crystal API endpoints.
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
+[Deploying Slate](https://github.com/lord/slate/wiki/Deploying-Slate)
+
+[Markdown Syntax](https://github.com/lord/slate/wiki/Markdown-Syntax)
+
 # Authentication
 
 > To authorize, use this code:
