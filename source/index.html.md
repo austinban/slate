@@ -22,13 +22,15 @@ Documentation
 
 Welcome to the Crystal API! You can use our API to access Crystal API endpoints to return personality profiles, analyze text samples, or retrieve user information with an access token.
 
-This is the first implementation of our API and would love to hear your feedback and questions. [Send us an email](mailto:hello@crystalknows.com)
+This is the first implementation of our API and would love to hear your feedback and questions.
+
+[Send us an email here.](mailto:hello@crystalknows.com)
 
 ## Endpoints
 
 Here's a quick overview of our API endpoints:
 
-Method | Endpoint | Usage   | Response Content Type
+Method | Endpoint | Usage   | Response Type
 ------ | -------  | ------- | -------
 Post   | [/v1/person_search](#person-search)| Returns profile based on person attributes       | application/json
 Get    | [/v1/me/text_sample](#text-sample)     | Returns profile based on text samples            | application/json
@@ -76,7 +78,7 @@ The `person_search` method returns a profile based on the persons attributes.
 
 <indent>Usage:</indent> Returns profile based on person attributes
 
-<indent>Response Content Type:</indent> application/json
+<indent>Response Type:</indent> application/json
 
 To check error codes, reference [our guide](#errors).
 
@@ -114,7 +116,7 @@ The `text_sample` method returns a profile based on the passed text samples.
 
 <indent>Usage:</indent> Returns profile based on text samples
 
-<indent>Response Content Type:</indent> application/json
+<indent>Response Type:</indent> application/json
 
 
 To check error codes, reference [our guide](#errors).
@@ -154,6 +156,6 @@ The `requestID` method retrieves user information for a given access token.
 
 <indent>Usage:</indent> Retrieve user information for given access token
 
-<indent>Response Content Type:</indent> application/json
+<indent>Response Type:</indent> application/json
 
 To check error codes, reference [our guide](#errors).
