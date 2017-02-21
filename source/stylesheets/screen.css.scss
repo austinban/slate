@@ -32,6 +32,8 @@ html, body {
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
@@ -74,8 +76,7 @@ html, body {
   .lang-selector {
     display: none;
     a {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
+      padding: 1em;
     }
   }
 
@@ -152,11 +153,17 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .tocify-item>a {
+    font-size: 16px;
+    padding: 10px $nav-padding 10px $nav-padding;
+  }
+  .toc-footer li {
+    padding: 0 $nav-padding 0 $nav-padding;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -171,16 +178,20 @@ html, body {
 
   li {
     color: $nav-text;
-    transition-property: background;
+    // transition-property: background;
     transition-timing-function: linear;
-    transition-duration: 230ms;
+    // transition-duration: 230ms;
+    transition: all .2s;
+    font-weight: 300;
   }
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
-    background-color: $nav-active-bg;
+    // box-shadow: 0px 1px 0px $nav-active-shadow;
+    // background-color: $nav-active-bg;
     color: $nav-active-text;
+    border-left: 6px solid $nav-active-bg;
+    font-weight: 700;
   }
 
   // Subheaders are the submenus that slide open
@@ -188,14 +199,13 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     // for embossed look:
-    @include embossed-bg;
+    // @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -209,6 +219,7 @@ html, body {
     li,a {
       color: $nav-text;
       text-decoration: none;
+      font-weight: 400;
     }
 
     a:hover {
@@ -301,17 +312,22 @@ html, body {
     float:left;
     color: $lang-select-text;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 5px 20px;
     line-height: 30px;
     outline: 0;
+    transition: all .2s;
+
+    &:hover{
+      background-color: lighten($lang-select-bg, 5);
+    }
 
     &:active, &:focus {
-      background-color: $lang-select-pressed-bg;
+      background-color: $aside-notice-bg;
       color: $lang-select-pressed-text;
     }
 
     &.active {
-      background-color: $lang-select-active-bg;
+      background-color: $nav-active-bg;
       color: $lang-select-active-text;
     }
   }
@@ -339,12 +355,12 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl, &>header {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    text-shadow: $main-embossed-text-shadow;
+    // text-shadow: $main-embossed-text-shadow;
 
     @extend %left-col;
   }
@@ -361,16 +377,18 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
+    font-weight: 200;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
+    // border-top: 1px solid #ddd;
+    box-shadow: 0 7px 7px rgba(0,0,0,.15);
     background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
-  h1:first-child, div:first-child + h1 {
+  h1:nth-child(2), div:nth-child(2) + h1 {
     border-top-width: 0;
     margin-top: 0;
   }
@@ -475,6 +493,7 @@ html, body {
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
+    font-size: 14px;
   }
 
   pre>code {
@@ -482,23 +501,48 @@ html, body {
     padding: 0;
   }
 
+  header{
+    text-align: center;
+    font-size: 42px;
+    font-weight: 200;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    color: #fff;
+    text-shadow: 0 0 0;
+    $top: #502CD5;
+    $bottom: #FF4364;
+    $deg: -45deg;
+    background: $top; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($deg, $top, $bottom); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($deg, $top, $bottom); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($deg, $top, $bottom); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($deg, $top, $bottom); /* Standard syntax */
+  }
+
+  indent{
+    font-weight: 700;
+    border-left: 6px solid $link-text;
+    padding-left: 6px;
+    margin-left: 10px;
+  }
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    // text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: $aside-notice-bg;
+    background: lighten($aside-notice-bg, 15);
     line-height: 1.6;
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      // text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      // text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
     }
   }
 
@@ -548,7 +592,7 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+    // text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
 
     @extend %right-col;
 

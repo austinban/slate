@@ -3,14 +3,10 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='https://www.crystalknows.com/'>Crystal Home Site</a>
-  - <a href='mailto:hello@crystalknows.com'>Email Us</a>
-  - <a href='#'>Bug Reporting</a>  <!-- Link to public github repo -->
+  - <a href='mailto:hello@crystalknows.com'>Contact Us</a>
 
 includes:
   - errors
@@ -18,203 +14,146 @@ includes:
 search: true
 ---
 
+<header>
+Documentation
+</header>
+
 # Introduction
 
-> We have language bindings in Shell, Ruby, and Python! You can view code examples in this dark area, and you can switch the programming language of the examples with the tabs in the top.
+Welcome to the Crystal API! You can use our API to access Crystal API endpoints to return personality profiles, analyze text samples, or retrieve user information with an access token.
 
-Welcome to the Crystal API! You can use our API to access Crystal API endpoints.
+This is the first implementation of our API and would love to hear your feedback and questions. [Send us an email](mailto:hello@crystalknows.com)
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Endpoints
 
-[Deploying Slate](https://github.com/lord/slate/wiki/Deploying-Slate)
+Here's a quick overview of our API endpoints:
 
-[Markdown Syntax](https://github.com/lord/slate/wiki/Markdown-Syntax)
+Method | Endpoint | Usage   | Response Content Type
+------ | -------  | ------- | -------
+Post   | [/v1/person_search](#person-search)| Returns profile based on person attributes       | application/json
+Get    | [/v1/me/text_sample](#text-sample)     | Returns profile based on text samples            | application/json
+Get    | [/v1/results/:requestID](#request-id) | Retrieve user information for given access token | application/json
 
-# Authentication
+# Person Search
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Code block: meowmeowmeow`
-
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
-
-1. This
-2. Is
-3. An
-4. Ordered
-5. List
-
-* This
-* Is
-* A
-* Bullet
-* List
-
-This is an [internal link](#error-code-definitions), this is an [external link](http://google.com).
-
-<aside class="notice">
-This is a notice
-</aside>
-
-<aside class="warning">
-This is a warning
-</aside>
-
-<aside class="success">
-This is a success
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Example parameter data
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string",
+  "companyName": "string",
+  "location": "string"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> Example cURL command
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```shell
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ \
+   "firstName": "string", \
+   "lastName": "string", \
+   "email": "string", \
+   "companyName": "string", \
+   "location": "string" \
+ }' 'https://enterprise-api.crystalknows.com/v1/person_search'
+```
 
-### HTTP Request
+> Example response
 
-`GET http://example.com/kittens/<ID>`
+```json
+{
+  "requestID": "string"
+}
+```
 
-### URL Parameters
+The `person_search` method returns a profile based on the persons attributes.
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+<indent>Method:</indent> Post
+
+<indent>Endpoint:</indent> /v1/person_search
+
+<indent>Usage:</indent> Returns profile based on person attributes
+
+<indent>Response Content Type:</indent> application/json
+
+To check error codes, reference [our guide](#errors).
+
+# Text Sample
+
+> Example parameter data
+
+```json
+{
+  "textSample": "string"
+}
+```
+
+> Example cURL command
+
+```shell
+curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ \
+   "textSample": "string" \
+ }' 'https://enterprise-api.crystalknows.com/v1/me/text_samples'
+```
+
+> Example response
+
+```json
+{
+  "requestID": "string"
+}
+```
+
+The `text_sample` method returns a profile based on the passed text samples.
+
+<indent>Method:</indent> Get
+
+<indent>Endpoint:</indent> /v1/me/text_sample
+
+<indent>Usage:</indent> Returns profile based on text samples
+
+<indent>Response Content Type:</indent> application/json
+
+
+To check error codes, reference [our guide](#errors).
+
+# Request ID
+
+> Example cURL command
+
+```shell
+curl -X GET --header 'Accept: application/json' 'https://enterprise-api.crystalknows.com/v1/results/:requestId'
+```
+
+> Example response
+
+```json
+{
+  "results": {
+    "text_type": 0,
+    "confidence": "string",
+    "scores": {
+      "d": 0,
+      "i": 0,
+      "s": 0,
+      "c": 0
+    }
+  },
+  "type": "string",
+  "id": "string"
+}
+```
+
+The `requestID` method retrieves user information for a given access token.
+
+<indent>Method:</indent> Get
+
+<indent>Endpoint:</indent> /v1/results/:requestID
+
+<indent>Usage:</indent> Retrieve user information for given access token
+
+<indent>Response Content Type:</indent> application/json
+
+To check error codes, reference [our guide](#errors).
