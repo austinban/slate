@@ -142,34 +142,42 @@ Documentation
 <th>Method</th>
 <th>Endpoint</th>
 <th>Usage</th>
-<th>Response Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Post</td>
 <td><a href="#person-search">/v1/person_search</a></td>
 <td>Returns profile based on person attributes</td>
-<td>application/json</td>
+</tr>
+<tr>
+<td>Post</td>
+<td><a href="#person-search-async">/v1/person_search/async</a></td>
+<td>Returns profile based on person attributes asynchronously</td>
 </tr>
 <tr>
 <td>Get</td>
 <td><a href="#text-sample">/v1/me/text_sample</a></td>
 <td>Returns profile based on text samples</td>
-<td>application/json</td>
+</tr>
+<tr>
+<td>Get</td>
+<td><a href="#text-sample-async">/v1/me/text_sample/async</a></td>
+<td>Returns profile based on text samples asynchronously</td>
 </tr>
 <tr>
 <td>Get</td>
 <td><a href="#request-id">/v1/results/:requestID</a></td>
 <td>Retrieve user information for given access token</td>
-<td>application/json</td>
 </tr>
 </tbody></table>
+
+<p>All of these endpoints return an <code class="prettyprint">application/json</code> object.</p>
 
 <h1 id="person-search">Person Search</h1>
 
 <p>The <code class="prettyprint">person_search</code> method returns a profile based on the persons attributes.</p>
 
-<h2 id="ps-summary">PS Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <blockquote>
 <p>Example parameter data</p>
@@ -201,7 +209,7 @@ Documentation
 
 <p><indent>Response Type:</indent> application/json</p>
 
-<h2 id="ps-response-parameters">PS Response Parameters</h2>
+<h2 id="response-parameters">Response Parameters</h2>
 
 <blockquote>
 <p>Example response</p>
@@ -354,7 +362,7 @@ Documentation
 
 <p><indent><code class="prettyprint">id</code></indent> is the request ID from the API.</p>
 
-<h2 id="ps-response-codes">PS Response Codes</h2>
+<h2 id="response-codes">Response Codes</h2>
 
 <table><thead>
 <tr>
@@ -375,6 +383,14 @@ Documentation
 <td>Key Was Invalid &ndash; Your API key is wrong</td>
 </tr>
 </tbody></table>
+
+<h1 id="person-search-async">Person Search Async</h1>
+
+<h2 id="summary">Summary</h2>
+
+<h2 id="response-parameters">Response Parameters</h2>
+
+<h2 id="response-codes">Response Codes</h2>
 
 <h1 id="text-sample">Text Sample</h1>
 
@@ -401,7 +417,7 @@ Documentation
 </span></code></pre>
 <p>The <code class="prettyprint">text_sample</code> method returns a profile based on the passed text samples.</p>
 
-<h3 id="summary">Summary</h3>
+<h2 id="summary">Summary</h2>
 
 <p><indent>Method:</indent> Get</p>
 
@@ -411,7 +427,7 @@ Documentation
 
 <p><indent>Response Type:</indent> application/json</p>
 
-<h3 id="response-codes">Response Codes</h3>
+<h2 id="response-codes">Response Codes</h2>
 
 <table><thead>
 <tr>
@@ -432,6 +448,14 @@ Documentation
 <td>Key Was Invalid &ndash; Your API key is wrong</td>
 </tr>
 </tbody></table>
+
+<h1 id="text-sample-async">Text Sample Async</h1>
+
+<h2 id="summary">Summary</h2>
+
+<h2 id="response-parameters">Response Parameters</h2>
+
+<h2 id="response-codes">Response Codes</h2>
 
 <h1 id="request-id">Request ID</h1>
 
