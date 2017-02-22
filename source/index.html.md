@@ -224,7 +224,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 
 <secondary><indent>`scores`</indent> is an `array` of four integers; `d`, `i`, `s`, and `c`.</secondary>
 
-<indent>`type`</indent> is a `string` that contains the type profile of this analyzed person. An example type would
+<indent>`type`</indent> is a `string` that is either TextSample or PersonSearch.
 
 <indent>`recommendations`</indent> contains all of the tips and hints for communicating with a person of this DISC profile.
 
