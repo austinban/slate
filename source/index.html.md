@@ -32,17 +32,21 @@ This is the first implementation of our API and would love to hear your feedback
 
 Here's a quick overview of our API endpoints:
 
-Method | Endpoint | Usage   | Response Type
------- | -------  | ------- | -------
-Post   | [/v1/person_search](#person-search)| Returns profile based on person attributes       | application/json
-Get    | [/v1/me/text_sample](#text-sample)     | Returns profile based on text samples            | application/json
-Get    | [/v1/results/:requestID](#request-id) | Retrieve user information for given access token | application/json
+Method | Endpoint | Usage
+------ | -------  | -------
+Post   | [/v1/person_search](#person-search)| Returns profile based on person attributes      
+Post   | [/v1/person_search/async](#person-search-async)| Returns profile based on person attributes asynchronously    
+Get    | [/v1/me/text_sample](#text-sample)     | Returns profile based on text samples          
+Get    | [/v1/me/text_sample/async](#text-sample-async)     | Returns profile based on text samples asynchronously
+Get    | [/v1/results/:requestID](#request-id) | Retrieve user information for given access token
+
+All of these endpoints return an `application/json` object.
 
 # Person Search
 
 The `person_search` method returns a profile based on the persons attributes.
 
-## PS Summary
+## Summary
 
 > Example parameter data
 
@@ -76,7 +80,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 
 <indent>Response Type:</indent> application/json
 
-## PS Response Parameters
+## Response Parameters
 
 > Example response
 
@@ -231,13 +235,21 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 <indent>`id`</indent> is the request ID from the API.
 
 
-## PS Response Codes
+## Response Codes
 
 Code | Meaning
 ---------- | -------
 200 | Success -- Not an error, just happy things
 400 | Missing Valid Param -- Check parameters for errors
 401 | Key Was Invalid -- Your API key is wrong
+
+# Person Search Async
+
+## Summary
+
+## Response Parameters
+
+## Response Codes
 
 # Text Sample
 
@@ -267,7 +279,7 @@ curl -X GET --header 'Content-Type: application/json' --header 'Accept: applicat
 
 The `text_sample` method returns a profile based on the passed text samples.
 
-### Summary
+## Summary
 
 <indent>Method:</indent> Get
 
@@ -277,13 +289,21 @@ The `text_sample` method returns a profile based on the passed text samples.
 
 <indent>Response Type:</indent> application/json
 
-### Response Codes
+## Response Codes
 
 Code | Meaning
 ---------- | -------
 200 | Success -- Not an error, just happy things
 400 | Missing Valid Param -- Check parameters for errors
 401 | Key Was Invalid -- Your API key is wrong
+
+# Text Sample Async
+
+## Summary
+
+## Response Parameters
+
+## Response Codes
 
 # Request ID
 
