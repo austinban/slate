@@ -1,9 +1,8 @@
-# Errors
+# Response Codes
 
-The Crystal API uses the following error codes:
+Different methods have different possible response codes. Here is a summary of all of the response codes the Crystal API uses:
 
-
-Error Code | Meaning
+Code | Meaning
 ---------- | -------
 200 | Success -- Not an error, just happy things
 400 | Missing Valid Param -- Check parameters for errors

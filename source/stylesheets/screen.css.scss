@@ -57,6 +57,22 @@ html, body {
     $nav-subitem-bg;
 }
 
+@mixin gradient($deg, $top, $bottom) {
+  background: $top; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($deg, $top, $bottom); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($deg, $top, $bottom); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($deg, $top, $bottom); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($deg, $top, $bottom); /* Standard syntax */
+}
+
+@mixin gradient-percent($deg, $top, $percentage, $bottom) {
+  background: $top; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($deg, $top $percentage, $bottom); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($deg, $top $percentage, $bottom); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($deg, $top $percentage, $bottom); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($deg, $top $percentage, $bottom); /* Standard syntax */
+}
+
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
 
@@ -87,7 +103,7 @@ html, body {
     img {
       display: block;
       max-width: 90%;
-      margin: 10px auto;
+      margin: 15px auto;
     }
   }
 
@@ -376,7 +392,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 200;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
@@ -385,7 +401,7 @@ html, body {
     margin-top: 2em;
     // border-top: 1px solid #ddd;
     box-shadow: 0 7px 7px rgba(0,0,0,.15);
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    // background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   h1:nth-child(2), div:nth-child(2) + h1 {
@@ -395,13 +411,23 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: 200;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+  }
+
+  h3{
+    font-size: 24px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    padding-bottom: 0em;
+    font-weight: 200;
+    // @include gradient-percent(0deg, white, 80%, rgba(0,0,0,.1));
   }
 
   // h2s right after h1s should bump right up
@@ -431,7 +457,6 @@ html, body {
   a{
     color: $link-text;
     text-decoration: none;
-    font-weight: 600;
     transition: all .2s;
     &:hover{
       color: lighten($link-text, 20);
@@ -503,27 +528,45 @@ html, body {
 
   header{
     text-align: center;
-    font-size: 42px;
+    font-size: 56px;
     font-weight: 200;
     padding-top: 80px;
     padding-bottom: 80px;
     color: #fff;
     text-shadow: 0 0 0;
-    $top: #502CD5;
-    $bottom: #FF4364;
-    $deg: -45deg;
-    background: $top; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient($deg, $top, $bottom); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($deg, $top, $bottom); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($deg, $top, $bottom); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($deg, $top, $bottom); /* Standard syntax */
+    @include gradient(-45deg, #502CD5, #FF4364);
+  }
+
+  hollow-button{
+    a{
+      border: 1px solid $crystal-sky-blue;
+      border-radius: 3px;
+      padding: 8px;
+      margin: 8px 0;
+      letter-spacing: 3px;
+      color: $crystal-sky-blue;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-block;
+      font-size: 12px;
+      &:hover{
+        color: white;
+        background-color: $crystal-sky-blue;
+      }
+    }
   }
 
   indent{
     font-weight: 700;
-    border-left: 6px solid $link-text;
+    border-left: 6px solid $crystal-sky-blue;
     padding-left: 6px;
-    margin-left: 10px;
+  }
+  secondary{
+    padding-left: 24px;
+    display: inline-block;
+    indent{
+      border-left: 6px solid $green;
+    }
   }
 
   aside {
