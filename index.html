@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
     <style>
       .highlight table td { padding: 5px; }
@@ -128,7 +129,9 @@ Documentation
 
 <p>This is the first implementation of our API and would love to hear your feedback and questions.</p>
 
-<p><a href="mailto:hello@crystalknows.com">Send us an email here.</a></p>
+<p><hollow-button>
+<a href="mailto:hello@crystalknows.com">Send us an email</a>
+</hollow-button></p>
 
 <h2 id="endpoints">Endpoints</h2>
 
@@ -164,37 +167,32 @@ Documentation
 
 <h1 id="person-search">Person Search</h1>
 
+<p>The <code class="prettyprint">person_search</code> method returns a profile based on the persons attributes.</p>
+
+<h2 id="ps-summary">PS Summary</h2>
+
 <blockquote>
 <p>Example parameter data</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marty"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"McFly"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crystal Project"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hill Valley, California"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example cURL command</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST --header <span class="s1">'Content-Type: application/json'</span> --header <span class="s1">'Accept: application/json'</span> -d <span class="s1">'{ \
-   "firstName": "string", \
-   "lastName": "string", \
-   "email": "string", \
-   "companyName": "string", \
-   "location": "string" \
+  "first_name": "Marty", /
+  "last_name": "McFly", /
+  "email": "example@example.com", /
+  "company_name": "Crystal Project", /
+  "location": "Hill Valley, California" /
  }'</span> <span class="s1">'https://enterprise-api.crystalknows.com/v1/person_search'</span>
 </code></pre>
-<blockquote>
-<p>Example response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"requestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>The <code class="prettyprint">person_search</code> method returns a profile based on the persons attributes.</p>
-
 <p><indent>Method:</indent> Post</p>
 
 <p><indent>Endpoint:</indent> /v1/person_search</p>
@@ -203,7 +201,180 @@ Documentation
 
 <p><indent>Response Type:</indent> application/json</p>
 
-<p>To check error codes, reference <a href="#errors">our guide</a>.</p>
+<h2 id="ps-response-parameters">PS Response Parameters</h2>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marty"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"McFly"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"accuracy_rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hill Valley, California"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crystal Project"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"job_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Software Architect"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"disc_scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"confidence"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"d"</span><span class="p">:</span><span class="w"> </span><span class="mi">1451</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"i"</span><span class="p">:</span><span class="w"> </span><span class="mi">1636</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"s"</span><span class="p">:</span><span class="w"> </span><span class="mi">1766</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">4347</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personSearch"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recommendations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Provide lots of detailed information and instructions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Ask them something that will require a long and thoughtful response"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Send lots of extra information (like links and attachments)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Use data to prove a point"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Use a formal greeting and closing"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"hints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Be detailed"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Be logical"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Be clear"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Be detailed"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Be interesting"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tips"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"\"We have time\""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Lots of detail"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"\"What are your thoughts?\""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"\"...need more information\""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"\"These are the rules\""</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"suggestions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"&lt;b class=\"red\"&gt;Shouldn't of&lt;/b&gt; should be &lt;b class=\"green\"&gt;shouldn't have&lt;/b&gt; This person notices grammatical mistakes."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"This person questions and challenges absolute claims, so instead of &lt;b class=\"red\"&gt;there is absolutely&lt;/b&gt;, use &lt;b class=\"green\"&gt;there is almost certainly&lt;/b&gt;."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"This person questions and challenges absolute claims, so instead of &lt;b class=\"red\"&gt;there are absolutely&lt;/b&gt;, use &lt;b class=\"green\"&gt;there is almost certainly&lt;/b&gt;."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"This person questions and challenges absolute claims, so don't say &lt;b class=\"red\"&gt;\"definitely\"&lt;/b&gt; unless you are 100% certain."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"This person questions and challenges absolute claims, so instead of &lt;b class=\"red\"&gt;\"100% sure\"&lt;/b&gt;, use &lt;b class=\"green\"&gt;\"almost certainly\"&lt;/b&gt;."</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"example"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for a meeting"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"greeting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello This person,"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi This person,\n\nMy name is [user_name], and I work for ABC company as a product manager. I have been reading your ideas on management, and many of them have resonated with me as I tackle similar challenges in my role.\n\nI am also located in Boston. If you have the time, I'd like to buy you a coffee at some point over the next few weeks to ask a few career-related questions. Would you be open to that?\n\nThanks,\n[user_name]"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;This person will only want to meet if there is a &lt;b&gt;clear purpose&lt;/b&gt; for the meeting, and you articulate your &lt;b&gt;motivations&lt;/b&gt;.&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"call_to_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reach out if this information is unclear or you'd like for anything to be explained in more detail."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I appreciate you taking the time to review the following e-mail, in which I'd like to discuss ______."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thanks,"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"motivation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This person will probably &lt;b&gt;avoid&lt;/b&gt; &lt;b&gt;unpredictable&lt;/b&gt; situations unless it's entirely necessary. They are well suited for roles that allow them to work independently, at a &lt;b&gt;careful&lt;/b&gt;, &lt;b&gt;methodical&lt;/b&gt; pace."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Accuracy &amp; precision"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Exploration &amp; discovery"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Being correct"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Competence &amp; skill"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Stability"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"speaking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This person is intentional and naturally reserved. Use &lt;b&gt;neutral&lt;/b&gt;, &lt;b&gt;detached&lt;/b&gt; tone and keep expressive gestures to a minimum when working with them."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Give them enough time to think before responding"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Ask them to explain something in detail"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Provide your reasoning before you get to the bottom line"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Guide the conversation with questions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Ask lots of questions to keep their attention"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"talent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When This person feels comfortable, they are &lt;b&gt;confident&lt;/b&gt;, &lt;b&gt;insightful&lt;/b&gt;, and enjoys &lt;b&gt;deep&lt;/b&gt;, &lt;b&gt;detailed&lt;/b&gt; discussion. This person might be &lt;b&gt;introverted&lt;/b&gt; in high-pressure or formal environments."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Read an instruction manual"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Like spreadsheets"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Pay close attention to all the details"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Make decisions based purely on logic"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Review all of the facts before making a big decision"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"trust"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This person is naturally leery of people who treat their work with indifference. This person possesses an innate sense of self and will gravitate to people who have similar high principles."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Project accuracy, rather than boldness"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Debate frequently and objectively"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Always prove your points with data"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Promptly admit when you are wrong"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Respect their time and space boundaries"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"use_case"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Leave detailed voicemails"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Focus on the \"here and now\""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Expect them to ask lots of questions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Present proven facts and statistics instead of customer stories"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Ask primarily \"yes or no\" questions"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"workplace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phrases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Take time to work out logical conclusions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Compliment quality of their work"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Spend time creating and maintaining high standards"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Use logical appeals if you argue"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Do your homework before a meeting"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70b4843e-8453-4b26-88e4-0114ddea3cbc"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><indent><code class="prettyprint">&quot;status&quot;</code></indent></p>
+
+<p><indent><code class="prettyprint">&quot;accuracy_rating&quot;</code></indent></p>
+
+<p><indent><code class="prettyprint">&quot;job_title&quot;</code></indent></p>
+
+<p><indent><code class="prettyprint">&quot;disc_scores&quot;</code></indent> contains all of the information regarding the person&rsquo;s DISC ratings.</p>
+
+<p><secondary><indent><code class="prettyprint">&quot;type&quot;</code></indent> is &hellip; </secondary></p>
+
+<p><secondary><indent><code class="prettyprint">&quot;confidence&quot;</code></indent> is a <code class="prettyprint">string</code> with a percentage between 0-100%. This is our metric for how confident we are in the accuracy of our analysis of this person&rsquo;s DISC profile.</secondary></p>
+
+<p><secondary><indent><code class="prettyprint">scores</code></indent> is an <code class="prettyprint">array</code> of four integers; <code class="prettyprint">d</code>, <code class="prettyprint">i</code>, <code class="prettyprint">s</code>, and <code class="prettyprint">c</code>.</secondary></p>
+
+<p><indent><code class="prettyprint">type</code></indent> is a <code class="prettyprint">string</code> that is either TextSample or PersonSearch.</p>
+
+<p><indent><code class="prettyprint">recommendations</code></indent> contains all of the tips and hints for communicating with a person of this DISC profile.</p>
+
+<p><indent><code class="prettyprint">id</code></indent> is the request ID from the API.</p>
+
+<h2 id="ps-response-codes">PS Response Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success &ndash; Not an error, just happy things</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing Valid Param &ndash; Check parameters for errors</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Key Was Invalid &ndash; Your API key is wrong</td>
+</tr>
+</tbody></table>
 
 <h1 id="text-sample">Text Sample</h1>
 
@@ -230,6 +401,8 @@ Documentation
 </span></code></pre>
 <p>The <code class="prettyprint">text_sample</code> method returns a profile based on the passed text samples.</p>
 
+<h3 id="summary">Summary</h3>
+
 <p><indent>Method:</indent> Get</p>
 
 <p><indent>Endpoint:</indent> /v1/me/text_sample</p>
@@ -238,7 +411,27 @@ Documentation
 
 <p><indent>Response Type:</indent> application/json</p>
 
-<p>To check error codes, reference <a href="#errors">our guide</a>.</p>
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success &ndash; Not an error, just happy things</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Missing Valid Param &ndash; Check parameters for errors</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Key Was Invalid &ndash; Your API key is wrong</td>
+</tr>
+</tbody></table>
 
 <h1 id="request-id">Request ID</h1>
 
@@ -267,6 +460,8 @@ Documentation
 </span></code></pre>
 <p>The <code class="prettyprint">requestID</code> method retrieves user information for a given access token.</p>
 
+<h3 id="summary">Summary</h3>
+
 <p><indent>Method:</indent> Get</p>
 
 <p><indent>Endpoint:</indent> /v1/results/:requestID</p>
@@ -275,15 +470,31 @@ Documentation
 
 <p><indent>Response Type:</indent> application/json</p>
 
-<p>To check error codes, reference <a href="#errors">our guide</a>.</p>
-
-          <h1 id="errors">Errors</h1>
-
-<p>The Crystal API uses the following error codes:</p>
+<h3 id="response-codes">Response Codes</h3>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success &ndash; Not an error, just happy things</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Key Was Invalid &ndash; Your API key is wrong</td>
+</tr>
+</tbody></table>
+
+          <h1 id="response-codes">Response Codes</h1>
+
+<p>Different methods have different possible response codes. Here is a summary of all of the response codes the Crystal API uses:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
